@@ -13,6 +13,9 @@ class Snake:
     def __init__(self):
         #CREATING SNAKE BODY
         self.segment = []
+        self.create_snake()
+    
+    def create_snake(self):
         for pos in starting_pos:
             self.add_segment(pos)
         self.head  = self.segment[0]
@@ -25,6 +28,12 @@ class Snake:
         new_segment.penup()
         new_segment.goto(pos)
         self.segment.append(new_segment)
+    
+    def reset_snake(self):  #Here the previous snake will be cleared and a new sanke is created
+        for seg in self.segment:
+            seg.goto(1000, 1000)
+        self.segment.clear()
+        self.create_snake()
 
     def extend(self):
         self.add_segment(self.segment[-1].position())  #Here the segmenty[-1] refers to the last box of which want to add as extension to snake after eating food
